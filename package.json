@@ -1,0 +1,37 @@
+{
+  "name": "meteor-apollo-accounts-example",
+  "description": "",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "Meteor",
+    "start": "Meteor",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "apollo-client": "^0.4.21",
+    "apollo-server": "^0.3.2",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "graphql": "^0.7.1",
+    "graphql-tag": "^0.1.14",
+    "graphql-tools": "^0.7.2",
+    "http-proxy-middleware": "^0.17.2",
+    "meteor-apollo-accounts": "^1.0.0",
+    "meteor-node-stubs": "^0.2.3",
+    "react": "^15.3.2",
+    "react-apollo": "^0.5.12",
+    "react-dom": "^15.3.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/janikvonrotz/meteor-apollo-accounts-example.git"
+  },
+  "author": "Janik von Rotz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/janikvonrotz/meteor-apollo-accounts-example/issues"
+  },
+  "homepage": "https://github.com/janikvonrotz/meteor-apollo-accounts-example#readme"
+}
