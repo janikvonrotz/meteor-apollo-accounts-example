@@ -1,6 +1,11 @@
-import {SchemaMutations as Auth} from 'meteor/nicolaslopezj:apollo-accounts'
+import { SchemaMutations, SchemaTypes } from 'meteor/nicolaslopezj:apollo-accounts'
 
 const schema = `
+${SchemaTypes}
+type Post {
+  _id: ID
+  title: String
+}
 type User {
   _id: ID
   emails: [Email]
@@ -14,10 +19,11 @@ type UserProfile {
   name: String
 }
 type Mutation {
-  ${Auth}
+  ${SchemaMutations}
 }
 type Query {
   me: User
+  posts: [Post]
 }
 schema {
   query: Query
