@@ -2,6 +2,9 @@ import { SchemaMutations, SchemaTypes } from 'meteor/nicolaslopezj:apollo-accoun
 
 const schema = `
 ${SchemaTypes}
+type Mutation {
+  ${SchemaMutations}
+}
 type Post {
   _id: ID
   title: String
@@ -16,10 +19,8 @@ type Email {
   verified: Boolean
 }
 type UserProfile {
-  name: String
-}
-type Mutation {
-  ${SchemaMutations}
+  firstname: String
+  lastname: String
 }
 type Query {
   me: User

@@ -27,7 +27,7 @@ export default () => {
         admin: user.admin
       });
 
-      Meteor.users.update(userId, {$set: {'emails.0.verified': true}});
+      Meteor.users.update(userId, {$set: {'emails.0.verified': true}})
     });
   }
 };
