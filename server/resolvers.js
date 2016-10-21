@@ -4,13 +4,13 @@ import { Resolvers as Auth } from 'meteor/nicolaslopezj:apollo-accounts'
 const resolvers = {
   Query: {
     me (root, args, context) {
-      var { userId } = context
+      var { userId } = context ? context : { userId: null }
       if (userId) {
         return Meteor.users.findOne(userId)
       }
     },
     posts (root, args, context) {
-      var { userId } = context
+      var { userId } = context ? context : { userId: null }
       if(userId) {
         return [
           {"_id": "85vf9834h893ml28c9sn232",
@@ -18,8 +18,6 @@ const resolvers = {
           {"_id": "324f9dfddd834h893ml28cs",
           "title": "Another secret post title."},
         ]
-      } else {
-        return []
       }
     }
   },

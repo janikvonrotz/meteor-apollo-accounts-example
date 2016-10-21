@@ -11,7 +11,6 @@ class App extends React.Component {
     let { email, password } = this.refs
     email = email.value
     password = password.value
-
     try {
       const response = await loginWithPassword({email, password}, client)
       console.log('response', response)
@@ -25,7 +24,7 @@ class App extends React.Component {
     event.preventDefault()
     let { client, data } = this.props
     try {
-      const response = await logout({email, password}, client)
+      const response = await logout(client)
       console.log('response', response)
       data.refetch()
     } catch (error) {

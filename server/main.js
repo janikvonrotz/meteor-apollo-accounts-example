@@ -10,7 +10,7 @@ const executableSchema = makeExecutableSchema({
   resolverValidationOptions: {
     requireResolversForNonScalar: false,
   },
-  allowUndefinedInResolve: false,
+  allowUndefinedInResolve: true,
   printErrors: true,
 });
 createApolloServer({
