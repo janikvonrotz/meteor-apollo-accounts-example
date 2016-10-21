@@ -5,34 +5,32 @@ import { loginWithPassword, logout } from 'meteor-apollo-accounts'
 
 class App extends React.Component {
 
-  login(event){
+  async login(event) {
     event.preventDefault();
     let { client, data } = this.props
     let { email, password } = this.refs
     email = email.value
     password = password.value
 
-    loginWithPassword({email, password}, client, (error, response) => {
-      if(error){
-        alert(error)
-      }else{
-        console.log('response', response)
-        data.refetch()
-      }
-    })
+    try {
+      const response = await loginWithPassword({email, password}, client)
+      console.log('response', response)
+      data.refetch()
+    } catch (error) {
+      alert(error)
+    }
   }
 
-  logout(event){
-    event.preventDefault();
+  async logout(event) {
+    event.preventDefault()
     let { client, data } = this.props
-    logout(client,(error, response) => {
-      if(error){
-        alert(error)
-      }else{
-        console.log('response', response)
-        data.refetch()
-      }
-    })
+    try {
+      const response = await logout({email, password}, client)
+      console.log('response', response)
+      data.refetch()
+    } catch (error) {
+      alert(error)
+    }
   }
 
   render() {
