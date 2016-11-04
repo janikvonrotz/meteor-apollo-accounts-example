@@ -3,7 +3,10 @@
   "description": "",
   "version": "1.0.0",
   "main": "main.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.9.1",
+    "eslint-plugin-react": "^6.5.0"
+  },
   "scripts": {
     "dev": "Meteor",
     "start": "Meteor",
