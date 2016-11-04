@@ -21,7 +21,8 @@
     "meteor-node-stubs": "^0.2.3",
     "react": "^15.3.2",
     "react-apollo": "^0.5.12",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-router": "^3.0.0"
   },
   "repository": {
     "type": "git",
