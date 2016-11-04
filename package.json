@@ -3,10 +3,7 @@
   "description": "",
   "version": "1.0.0",
   "main": "main.js",
-  "devDependencies": {
-    "eslint": "^3.9.1",
-    "eslint-plugin-react": "^6.5.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "dev": "Meteor",
     "start": "Meteor",
@@ -20,7 +17,7 @@
     "graphql": "^0.7.1",
     "graphql-tag": "^0.1.14",
     "graphql-tools": "^0.6.2",
-    "meteor-apollo-accounts": "^1.0.5",
+    "meteor-apollo-accounts": "1.0.5",
     "meteor-node-stubs": "^0.2.3",
     "react": "^15.3.2",
     "react-apollo": "^0.5.12",
