@@ -2,17 +2,18 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { loginWithPassword, logout } from 'meteor-apollo-accounts'
+import { ApolloClient } from './index'
 
 class App extends React.Component {
 
   async login(event) {
     event.preventDefault();
-    let { client, data } = this.props
+    let { data } = this.props
     let { email, password } = this.refs
     email = email.value
     password = password.value
     try {
-      const response = await loginWithPassword({email, password}, client)
+      const response = await loginWithPassword({email, password}, ApolloClient)
       console.log('response', response)
       data.refetch()
     } catch (error) {
@@ -22,9 +23,9 @@ class App extends React.Component {
 
   async logout(event) {
     event.preventDefault()
-    let { client, data } = this.props
+    let { data } = this.props
     try {
-      const response = await logout(client)
+      const response = await logout(ApolloClient)
       console.log('response', response)
       data.refetch()
     } catch (error) {
@@ -50,7 +51,7 @@ class App extends React.Component {
           type="password"
           ref="password" />
           <br />
-          
+
           <button type="button" onClick={this.login.bind(this)}>Login</button>
           <button type="button" onClick={this.logout.bind(this)}>Logout</button>
         </form>

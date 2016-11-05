@@ -1,20 +1,20 @@
 import React from 'react'
 import { loginWithPassword } from 'meteor-apollo-accounts'
+import { ApolloClient } from './index'
 
 class Login extends React.Component {
 
   async login(event) {
     event.preventDefault();
 
-    let { client, data } = this.props
+    let { data } = this.props
     let { email, password } = this.refs
     email = email.value
     password = password.value
 
     try {
-      const response = await loginWithPassword({email, password}, client)
+      const response = await loginWithPassword({email, password}, ApolloClient)
       console.log('response', response)
-      data.refetch()
     } catch (error) {
       alert(error)
     }
