@@ -23,7 +23,6 @@ class Register extends React.Component {
   }
 
   render() {
-    let { posts, me } = this.props.data
     return (
       <div>
           <form onSubmit={this.register.bind(this)}>

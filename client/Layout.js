@@ -1,6 +1,7 @@
 import React from 'react'
 import { logout } from 'meteor-apollo-accounts'
 import { Link } from 'react-router'
+import { ApolloClient } from './index'
 
 class Layout extends React.Component {
 
@@ -8,9 +9,8 @@ class Layout extends React.Component {
     event.preventDefault()
     let { client, data } = this.props
     try {
-      const response = await logout(client)
+      const response = await logout(ApolloClient)
       console.log('response', response)
-      data.refetch()
     } catch (error) {
       alert(error)
     }
