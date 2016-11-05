@@ -36,42 +36,43 @@ class App extends React.Component {
     let { posts, me } = this.props.data
     return (
       <div>
-        <h1>App</h1>
-          <form>
-            <label>Email: </label>
-            <input
-            defaultValue="admin@example.com"
-            type="email"
-            ref="email" />
-            <br />
-            <label>Password: </label>
-            <input
-            defaultValue="password"
-            type="password"
-            ref="password" />
-            <br />
-            <button type="button" onClick={this.login.bind(this)}>Login</button>
-            <button type="button" onClick={this.logout.bind(this)}>Logout</button>
-          </form>
-          { me ? <p>Hi {me.profile.firstname} {me.profile.lastname}, you are logged in.</p> : <p>You are logged out.</p> }
-          {(()=>{
-            if(posts){
-              return (
-                <div>
-                  <h2>Posts</h2>
-                  <ul>
-                    {posts.map((post) => {
-                      return (
-                        <li key={post._id}>{post.title}</li>
-                      )
-                    })}
-                  </ul>
-                </div>
-              )
-            }
-          })()}
+        <form>
+          <label>Email: </label>
+          <input
+          defaultValue="admin@example.com"
+          type="email"
+          ref="email" />
+          <br />
+
+          <label>Password: </label>
+          <input
+          defaultValue="password"
+          type="password"
+          ref="password" />
+          <br />
+          
+          <button type="button" onClick={this.login.bind(this)}>Login</button>
+          <button type="button" onClick={this.logout.bind(this)}>Logout</button>
+        </form>
+        { me ? <p>Hi {me.profile.firstname} {me.profile.lastname}, you are logged in.</p> : <p>You are logged out.</p> }
+        {(()=>{
+          if(posts){
+            return (
+              <div>
+                <h2>Posts</h2>
+                <ul>
+                  {posts.map((post) => {
+                    return (
+                      <li key={post._id}>{post.title}</li>
+                    )
+                  })}
+                </ul>
+              </div>
+            )
+          }
+        })()}
       </div>
-    );
+    )
   }
 }
 
