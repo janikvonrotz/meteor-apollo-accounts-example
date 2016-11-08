@@ -4,6 +4,10 @@ const schema = `
 ${SchemaTypes}
 type Mutation {
   ${SchemaMutations}
+  updateProfile(
+    firstname: String
+    lastname: String
+  ): SuccessResponse
 }
 type Post {
   _id: ID

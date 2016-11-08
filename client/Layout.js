@@ -25,6 +25,7 @@ class Layout extends React.Component {
             <li><Link to={`/register`}>Register</Link></li>
             <li><Link onClick={this.logout.bind(this)}>Logout</Link></li>
             <li><Link to={`/recover-password`}>RecoverPassword</Link></li>
+            <li><Link to={`/profile`}>Profile</Link></li>
           </ul>
           {this.props.children}
         </div>

@@ -2,7 +2,8 @@ import React from 'react'
 import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
 import { ApolloProvider } from 'react-apollo'
-import { App, Layout, NotFound, Login, Register, ApolloClient } from './index'
+import { App, Layout, NotFound, Login, Register, ApolloClient,
+  Profile } from './index'
 import { Router, Route, browserHistory } from 'react-router'
 
 Meteor.startup(() => {
@@ -13,6 +14,7 @@ Meteor.startup(() => {
          <Route path="/" component={App} />
          <Route path="/login" component={Login} />
          <Route path="/register" component={Register} />
+         <Route path="/profile" component={Profile} />
          <Route path="*" component={NotFound} />
        </Route>
       </Router>

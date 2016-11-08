@@ -1,0 +1,84 @@
+import React from 'react'
+import { createUser } from 'meteor-apollo-accounts'
+import { ApolloClient } from './index'
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
+class Profile extends React.Component {
+
+  update(event) {
+    event.preventDefault();
+
+    let { client, data, updateProfile } = this.props
+    let { firstname, lastname } = this.refs
+    firstname = firstname.value
+    lastname = lastname.value
+
+    updateProfile({firstname: firstname, lastname: lastname})
+    .then((response) => {
+      alert(response.data.updateProfile.success)
+      // browserHistory.push(`/email-verification`)
+    }).catch((error) => {
+      alert(error)
+    });
+  }
+
+  render() {
+    let { me, loading } = this.props.data
+
+    return (loading || !me) ? (<p>Loading...</p>) : (
+      <div>
+          <form onSubmit={this.update.bind(this)}>
+              <label>Firstname: </label>
+              <input
+              defaultValue={me.profile.firstname}
+              type="text"
+              required="true"
+              ref="firstname" />
+              <br />
+
+              <label>Lastname: </label>
+              <input
+              defaultValue={me.profile.lastname}
+              type="text"
+              required="true"
+              ref="lastname" />
+              <br />
+
+              <button type="submit">Save</button>
+          </form>
+      </div>
+    );
+  }
+}
+
+const query = gql`
+query getCurrentUser {
+  me {
+    profile {
+      firstname
+      lastname
+    }
+  }
+}
+`
+
+const updateProfile = gql`
+mutation updateProfile($firstname: String, $lastname: String) {
+  updateProfile(firstname: $firstname, lastname: $lastname){
+    success
+  }
+}
+`
+
+Profile = graphql(updateProfile, {
+  props({ mutate }) {
+    return {
+      updateProfile({firstname, lastname}) {
+        return mutate({ variables: { firstname, lastname }})
+      }
+    }
+  },
+})(graphql(query)(Profile))
+
+export default Profile

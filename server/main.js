@@ -2,8 +2,6 @@ import { makeExecutableSchema } from 'graphql-tools'
 import { resolvers, schema, account, seed } from './index'
 import { createApolloServer } from 'meteor/apollo';
 
-seed();
-
 const executableSchema = makeExecutableSchema({
   typeDefs: schema,
   resolvers: resolvers,
