@@ -6,6 +6,7 @@ import Register from './Register'
 import NotFound from './NotFound'
 import ApolloClient from './ApolloClient'
 import Profile from './Profile'
+import EmailVerification from './EmailVerification'
 
 export { App, Layout, Login, RecoverPassword, Register, NotFound, ApolloClient,
-Profile }
+Profile, EmailVerification }

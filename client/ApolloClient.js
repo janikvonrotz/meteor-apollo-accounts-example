@@ -1,7 +1,7 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { getLoginToken } from 'meteor-apollo-accounts'
 
-const networkInterface = createNetworkInterface(`/graphql`)
+const networkInterface = createNetworkInterface({ uri: '/graphql' })
 networkInterface.use([{
   applyMiddleware(req, next) {
     if (!req.options.headers) {
