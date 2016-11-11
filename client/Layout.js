@@ -24,13 +24,13 @@ class Layout extends React.Component {
       return (
         <div>
           <h1><Link to={'/'}>App</Link></h1>
-          <ul>
+          <ul className="navigation">
             <li><Link to={`/login`}>Login</Link></li>
-            <li><Link to={`/register`}>Register</Link></li>
             <li><Link onClick={this.logout.bind(this)}>Logout</Link></li>
-            <li><Link to={`/recover-password`}>Recover Password</Link></li>
-            <li><Link to={`/profile`}>Profile</Link></li>
+            <li><Link to={`/register`}>Register</Link></li>
             <li><Link to={`/email-verification`}>Email Verification</Link></li>
+            <li><Link to={`/profile`}>Profile</Link></li>
+            <li><Link to={`/recover-password`}>Recover Password</Link></li>
           </ul>
           {this.props.children}
         </div>
