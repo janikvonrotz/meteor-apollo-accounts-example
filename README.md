@@ -16,7 +16,7 @@ Example app implementing [meteor-apollo-accounts](https://github.com/nicolaslope
 * Restrict access on the grapqhl API
 * Redirect user access
 * Register new users
-* Email verfification
+* Email verification
 * Password reset
 * Update user profile
 
