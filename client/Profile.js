@@ -16,10 +16,10 @@ class Profile extends React.Component {
 
     updateProfile({firstname: firstname, lastname: lastname})
     .then((response) => {
-      alert(response.data.updateProfile.success)
+      console.log(response.data.updateProfile.success)
       // browserHistory.push(`/email-verification`)
     }).catch((error) => {
-      alert(error)
+      console.log(error)
     });
   }
 

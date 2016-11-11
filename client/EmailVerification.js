@@ -6,24 +6,30 @@ import { ApolloClient } from './index'
 
 class EmailVerification extends React.Component {
 
-  async resend(){
+  async resend(event){
+    event.preventDefault()
+
+    let { email } = this.refs
+    email = email.value
+
     try {
-      const response = await resendVerificationEmail({email}, ApolloClient)
-      console.log('response', response)
+      const response = await resendVerificationEmail({ email }, ApolloClient)
+      console.log(response)
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 
   async componentDidMount() {
-    var {params, data} = this.props;
-    if(params && params.token){
+    let { data } = this.props
+    let { token } = this.props.params
+    if(token){
       try {
-        const response = await verifyEmail({token}, ApolloClient)
-        console.log('response', response)
+        const response = await verifyEmail({ token }, ApolloClient)
+        console.log(response)
         data.refetch()
       } catch (error) {
-        alert(error)
+        console.log(error)
       }
     }
   }
@@ -38,7 +44,7 @@ class EmailVerification extends React.Component {
     }
     console.log(token, verified)
 
-    return (loading || !me) ? (<p>Loading...</p>) : (
+    return (loading) ? (<p>Loading...</p>) : (
       <div>
 
         { (!token && !verified) ? <p>Please check your email account for a verification email.</p> : '' }

@@ -10,9 +10,9 @@ class Layout extends React.Component {
     let { client, data } = this.props
     try {
       const response = await logout(ApolloClient)
-      console.log('response', response)
+      console.log(response)
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 

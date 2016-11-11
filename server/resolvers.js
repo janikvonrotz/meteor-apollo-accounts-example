@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor'
-import { Resolvers as Auth } from 'meteor/nicolaslopezj:apollo-accounts'
+import { Resolvers } from 'meteor/nicolaslopezj:apollo-accounts'
 import _ from 'underscore'
+
+console.log(Resolvers)
 
 const resolvers = {
   Query: {
@@ -23,7 +25,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    ...Auth,
+    ...Resolvers,
     updateProfile(root, args, context){
       let { userId } = context ? context : { userId: null }
       let user = Meteor.users.findOne(userId)

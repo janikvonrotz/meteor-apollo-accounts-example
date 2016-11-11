@@ -14,10 +14,10 @@ class App extends React.Component {
     password = password.value
     try {
       const response = await loginWithPassword({email, password}, ApolloClient)
-      console.log('response', response)
+      console.log(response)
       data.refetch()
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 
@@ -26,10 +26,10 @@ class App extends React.Component {
     let { data } = this.props
     try {
       const response = await logout(ApolloClient)
-      console.log('response', response)
+      console.log(response)
       data.refetch()
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 

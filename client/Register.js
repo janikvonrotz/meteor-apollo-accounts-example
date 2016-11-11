@@ -18,16 +18,16 @@ class Register extends React.Component {
 
     try {
       const response = await createUser({email, password}, ApolloClient)
-      console.log('response', response)
+      console.log(response)
       updateProfile({firstname: firstname, lastname: lastname})
       .then((response) => {
-        console.log('response', response)
+        console.log(response)
         // browserHistory.push(`/email-verification`)
       }).catch((error) => {
-        alert(error)
+        console.log(error)
       });
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 

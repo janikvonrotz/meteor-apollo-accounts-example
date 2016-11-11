@@ -4,13 +4,23 @@ import { ApolloClient } from './index'
 
 class RecoverPassword extends React.Component {
 
-  reset(){
+  reset(event){
+    event.preventDefault()
 
   }
 
+  async forgot(event) {
+    event.preventDefault()
 
-  forgot() {
+    let { email } = this.refs
+    email = email.value
 
+    try {
+      const response = await forgotPassword({ email }, ApolloClient)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {

@@ -13,10 +13,10 @@ class Login extends React.Component {
     password = password.value
 
     try {
-      const response = await loginWithPassword({email, password}, ApolloClient)
-      console.log('response', response)
+      const response = await loginWithPassword({ email, passwordc}, ApolloClient)
+      console.log(response)
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
 
