@@ -1,9 +1,10 @@
 import { SchemaMutations, SchemaTypes } from 'meteor/nicolaslopezj:apollo-accounts'
+import mutations from './mutations'
 
 const schema = `
 ${SchemaTypes}
 type Mutation {
-  ${SchemaMutations}
+  ${mutations}
   updateProfile(
     firstname: String
     lastname: String
