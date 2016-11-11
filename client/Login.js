@@ -1,6 +1,7 @@
 import React from 'react'
 import { loginWithPassword } from 'meteor-apollo-accounts'
-import { ApolloClient } from './index'
+import { ApolloClient, Notification } from './index'
+import { browserHistory } from 'react-router'
 
 class Login extends React.Component {
 
@@ -13,10 +14,11 @@ class Login extends React.Component {
     password = password.value
 
     try {
-      const response = await loginWithPassword({ email, passwordc}, ApolloClient)
-      console.log(response)
+      const response = await loginWithPassword({ email, password }, ApolloClient)
+      Notification.success(response)
+      browserHistory.push('/')
     } catch (error) {
-      console.log(error)
+      Notification.error(error)
     }
   }
 

@@ -7,12 +7,15 @@ Example app implementing [meteor-apollo-accounts](https://github.com/nicolaslope
 * Git clone this repo
 * Run `npm install` and `npm run`
 * Go to [http://localhost:3000](http://localhost:3000) to use the app
-* Or open [http://localhost:3000/graphiql](http://localhost:3000/graphiql) and play with the API.
+* Or open [http://localhost:3000/graphiql](http://localhost:3000/graphiql) and test the API
 
 ## Features
 
-* Integrates with Meteor accounts
-* Authenticate users with password and other services
+* Authenticate users with Meteor accounts
+* Use existing Apollo schemas
+* Restrict access on the grapqhl API
+* Redirect user access
+* Register new users
 * Email verfification
 * Password reset
 * Update user profile

@@ -22,6 +22,7 @@
     "graphql-typings": "0.0.1-beta-2",
     "meteor-apollo-accounts": "^1.0.5",
     "meteor-node-stubs": "^0.2.3",
+    "notie": "^3.9.4",
     "react": "^15.3.2",
     "react-apollo": "^0.5.12",
     "react-dom": "^15.3.2",

@@ -1,6 +1,6 @@
 import React from 'react'
 import { createUser } from 'meteor-apollo-accounts'
-import { ApolloClient } from './index'
+import { ApolloClient, Notification } from './index'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -16,10 +16,9 @@ class Profile extends React.Component {
 
     updateProfile({firstname: firstname, lastname: lastname})
     .then((response) => {
-      console.log(response.data.updateProfile.success)
-      // browserHistory.push(`/email-verification`)
+      Notification.success(response)
     }).catch((error) => {
-      console.log(error)
+      Notification.error(error)
     });
   }
 

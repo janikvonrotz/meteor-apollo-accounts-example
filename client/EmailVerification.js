@@ -2,7 +2,7 @@ import React from 'react'
 import { verifyEmail, resendVerificationEmail } from 'meteor-apollo-accounts'
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { ApolloClient } from './index'
+import { ApolloClient, Notification } from './index'
 
 class EmailVerification extends React.Component {
 
@@ -14,35 +14,34 @@ class EmailVerification extends React.Component {
 
     try {
       const response = await resendVerificationEmail({ email }, ApolloClient)
-      console.log(response)
+      Notification.success(response)
     } catch (error) {
-      console.log(error)
+      Notification.error(error)
     }
   }
 
   async componentDidMount() {
     let { data } = this.props
     let { token } = this.props.params
+
     if(token){
       try {
         const response = await verifyEmail({ token }, ApolloClient)
-        console.log(response)
+        Notification.success(response)
         data.refetch()
       } catch (error) {
-        console.log(error)
+        Notification.error(error)
       }
     }
   }
 
   render() {
-    console.log(this.props)
     let { me, loading } = this.props.data
     let { token } = this.props.params
     let verified = false
     if(me){
       verified = me.emails[0].verified
     }
-    console.log(token, verified)
 
     return (loading) ? (<p>Loading...</p>) : (
       <div>
@@ -70,7 +69,7 @@ class EmailVerification extends React.Component {
   }
 }
 
-const getCurrentUser = gql`
+const query = gql`
 query getCurrentUser {
   me {
     emails {
@@ -79,6 +78,6 @@ query getCurrentUser {
   }
 }
 `
-EmailVerification = graphql(getCurrentUser)(EmailVerification)
+EmailVerification = graphql(query)(EmailVerification)
 
 export default EmailVerification

@@ -2,8 +2,6 @@ import { Meteor } from 'meteor/meteor'
 import { Resolvers } from 'meteor/nicolaslopezj:apollo-accounts'
 import _ from 'underscore'
 
-console.log(Resolvers)
-
 const resolvers = {
   Query: {
     me (root, args, context) {

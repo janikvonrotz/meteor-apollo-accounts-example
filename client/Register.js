@@ -1,8 +1,9 @@
 import React from 'react'
 import { createUser } from 'meteor-apollo-accounts'
-import { ApolloClient } from './index'
+import { ApolloClient, Notification } from './index'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { browserHistory } from 'react-router'
 
 class Register extends React.Component {
 
@@ -18,16 +19,16 @@ class Register extends React.Component {
 
     try {
       const response = await createUser({email, password}, ApolloClient)
-      console.log(response)
+      Notification.success(response)
       updateProfile({firstname: firstname, lastname: lastname})
       .then((response) => {
-        console.log(response)
-        // browserHistory.push(`/email-verification`)
+        Notification.success(response)
+        browserHistory.push('/email-verification')
       }).catch((error) => {
-        console.log(error)
+        Notification.error(error)
       });
     } catch (error) {
-      console.log(error)
+      Notification.error(error)
     }
   }
 
