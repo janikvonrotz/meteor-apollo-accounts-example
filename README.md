@@ -1,6 +1,6 @@
 # Meteor Apollo accounts Example
 
-Example app implementing [Meteor Apllo Accounts](https://github.com/nicolaslopezj/meteor-apollo-accounts).
+Example app implementing [Meteor Apollo Accounts](https://github.com/nicolaslopezj/meteor-apollo-accounts).
 
 ## Installation
 
