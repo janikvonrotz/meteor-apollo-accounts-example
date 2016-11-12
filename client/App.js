@@ -7,9 +7,8 @@ class App extends React.Component {
   render() {
     let { posts, me, loading } = this.props.data
 
-    return (loading || !me) ? (<p>Loading...</p>) : (
+    return loading ? (<p>Loading...</p>) : (
       <div>
-        <small>Make sure to reload this page after login or logout. <a href="https://github.com/nicolaslopezj/meteor-apollo-accounts/issues/1"> Help fixing this issue.</a></small>
         { me ? <p>Hi {me.profile.firstname} {me.profile.lastname}, you are logged in.</p> : <p>You are logged out.</p> }
         {(()=>{
           if(posts){

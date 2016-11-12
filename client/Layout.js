@@ -14,6 +14,7 @@ class Layout extends React.Component {
     try {
       const response = await logout(ApolloClient)
       Notification.success(response)
+      ApolloClient.resetStore()
       browserHistory.push('/login')
     } catch (error) {
       Notification.error(error)

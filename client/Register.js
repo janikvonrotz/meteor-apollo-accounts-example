@@ -20,6 +20,7 @@ class Register extends React.Component {
     try {
       const response = await createUser({email, password}, ApolloClient)
       Notification.success(response)
+      ApolloClient.resetStore()
       updateProfile({firstname: firstname, lastname: lastname})
       .then((response) => {
         Notification.success(response)

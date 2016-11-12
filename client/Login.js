@@ -16,6 +16,7 @@ class Login extends React.Component {
     try {
       const response = await loginWithPassword({ email, password }, ApolloClient)
       Notification.success(response)
+      ApolloClient.resetStore()
       browserHistory.push('/')
     } catch (error) {
       Notification.error(error)
