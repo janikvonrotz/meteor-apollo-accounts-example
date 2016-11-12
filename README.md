@@ -1,7 +1,7 @@
 # Meteor Apollo accounts Example
 
-Example app implementing [Meteor Apollo Accounts](https://github.com/nicolaslopezj/meteor-apollo-accounts).
-Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://janikvonrotz.ch/2016/11/12/authenticate-meteor-accounts-with-the-apollo-graphql-api/)
+Example app implementing [Meteor Apollo Accounts](https://github.com/nicolaslopezj/meteor-apollo-accounts).  
+Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://janikvonrotz.ch/2016/11/12/authenticate-meteor-accounts-with-the-apollo-graphql-api/)  
 
 ## Installation
 
