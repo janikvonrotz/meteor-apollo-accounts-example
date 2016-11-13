@@ -10,22 +10,19 @@ class App extends React.Component {
     return loading ? (<p>Loading...</p>) : (
       <div>
         { me ? <p>Hi {me.profile.firstname} {me.profile.lastname}, you are logged in.</p> : <p>You are logged out.</p> }
-        {(()=>{
-          if(posts){
-            return (
-              <div>
-                <h2>Posts</h2>
-                <ul>
-                  {posts.map((post) => {
-                    return (
-                      <li key={post._id}>{post.title}</li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          }
-        })()}
+        { (me && !me.emails[0].verified) ? <p>Please verify your email address.</p> : ''}
+        { posts ? (
+          <div>
+            <h2>Posts</h2>
+            <ul>
+              {posts.map((post) => {
+                return (
+                  <li key={post._id}>{post.title}</li>
+                )
+              })}
+            </ul>
+          </div>
+        ) : '' }
       </div>
     )
   }
@@ -41,6 +38,9 @@ query getCurrentUser {
     profile {
       firstname
       lastname
+    }
+    emails {
+      verified
     }
   }
 }

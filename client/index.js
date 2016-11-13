@@ -8,6 +8,7 @@ import ApolloClient from './ApolloClient'
 import Profile from './Profile'
 import EmailVerification from './EmailVerification'
 import Notification from './Notification'
+import ChangePassword from './ChangePassword'
 
 export { App, Layout, Login, RecoverPassword, Register, NotFound, ApolloClient,
-Profile, EmailVerification, Notification }
+Profile, EmailVerification, Notification, ChangePassword }

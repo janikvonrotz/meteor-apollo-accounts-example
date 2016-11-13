@@ -18,6 +18,7 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 * Redirect user access
 * Register new users
 * Email verification
+* Password change
 * Password reset
 * Update user profile
 
@@ -27,5 +28,6 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 
 ## Todo
 
-- [ ] Password change component
+- [x] Password change component
 - [ ] User redirect on Profile access and Email Verification
+- [x] Add email Verification message to App

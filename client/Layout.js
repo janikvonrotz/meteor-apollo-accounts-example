@@ -31,6 +31,7 @@ class Layout extends React.Component {
             <li><Link to={`/register`}>Register</Link></li>
             <li><Link to={`/email-verification`}>Email Verification</Link></li>
             <li><Link to={`/profile`}>Profile</Link></li>
+            <li><Link to={`/change-password`}>Change Password</Link></li>
             <li><Link to={`/recover-password`}>Recover Password</Link></li>
           </ul>
           {this.props.children}
