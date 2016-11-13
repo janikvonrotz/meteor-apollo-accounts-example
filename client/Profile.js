@@ -17,6 +17,7 @@ class Profile extends React.Component {
     updateProfile({firstname: firstname, lastname: lastname})
     .then((response) => {
       Notification.success(response)
+      ApolloClient.resetStore()
     }).catch((error) => {
       Notification.error(error)
     });
