@@ -64,8 +64,8 @@ query getCurrentUser {
 `
 
 const updateProfile = gql`
-mutation updateProfile($firstname: String, $lastname: String) {
-  updateProfile(firstname: $firstname, lastname: $lastname){
+mutation updateProfile($firstname: String, $lastname: String, $name: String) {
+  updateProfile(firstname: $firstname, lastname: $lastname, name: $name){
     success
   }
 }
@@ -75,7 +75,8 @@ Profile = graphql(updateProfile, {
   props({ mutate }) {
     return {
       updateProfile({firstname, lastname}) {
-        return mutate({ variables: { firstname, lastname }})
+        let name = `${firstname} ${lastname}`
+        return mutate({ variables: { firstname, lastname, name }})
       }
     }
   },

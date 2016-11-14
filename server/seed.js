@@ -23,8 +23,9 @@ if (Meteor.users.find().count() === 0 ) {
       profile: {
         firstname: user.firstname,
         lastname: user.lastname,
+        name: `${user.firstname} ${user.lastname}`
       },
-      roles: user.roles
+      roles: user.roles,
     });
 
     Meteor.users.update(userId, {$set: {'emails.0.verified': true}})

@@ -13,6 +13,7 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 ## Features
 
 * Authenticate users with Meteor accounts
+* Social login with Facebook and Google
 * Use existing Apollo schemas
 * Restrict access on the grapqhl API
 * Redirect user access
@@ -29,6 +30,6 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 ## Todo
 
 - [x] Password change component
-- [ ] User redirect on Profile access and Email Verification
-- [ ] Social login with Facebook and Google
+- [x] Social login with Facebook and Google
 - [x] Add email Verification message to App
+- [x] Do a lot of stuff

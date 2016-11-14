@@ -9,7 +9,7 @@ class App extends React.Component {
 
     return loading ? (<p>Loading...</p>) : (
       <div>
-        { me ? <p>Hi {me.profile.firstname} {me.profile.lastname}, you are logged in.</p> : <p>You are logged out.</p> }
+        { me ? <p>Hi {me.profile.name}, you are logged in.</p> : <p>You are logged out.</p> }
         { (me && !me.emails[0].verified) ? <p>Please verify your email address.</p> : ''}
         { posts ? (
           <div>
@@ -36,8 +36,7 @@ query getCurrentUser {
   }
   me {
     profile {
-      firstname
-      lastname
+      name
     }
     emails {
       verified

@@ -8,31 +8,28 @@ import GoogleLogin from 'react-google-login'
 class SocialLogin extends React.Component {
 
   async callbackFacebook({accessToken}) {
-    console.log(accessToken)
     try {
       let response = await loginWithFacebook({accessToken}, ApolloClient)
-      console.log(response)
       Notification.success(response)
+      ApolloClient.resetStore()
+      browserHistory.push('/')
     } catch (error) {
-      console.log(error)
       Notification.error(error)
     }
   }
 
   async successGoogle({accessToken}) {
-    console.log(accessToken)
     try {
       let response = await loginWithGoogle({accessToken}, ApolloClient)
-      console.log(response)
       Notification.success(response)
+      ApolloClient.resetStore()
+      browserHistory.push('/')
     } catch (error) {
-      console.log(error)
       Notification.error(error)
     }
   }
 
   failureGoogle(error) {
-    console.log(error)
     Notification.error(error)
   }
 

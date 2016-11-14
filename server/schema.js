@@ -7,6 +7,7 @@ type Mutation {
   updateProfile(
     firstname: String
     lastname: String
+    name: String
   ): SuccessResponse
 }
 type Post {
@@ -25,6 +26,7 @@ type Email {
 type UserProfile {
   firstname: String
   lastname: String
+  name: String
 }
 type Query {
   me: User
