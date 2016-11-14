@@ -3,7 +3,8 @@ import { Meteor } from 'meteor/meteor'
 import { render } from 'react-dom'
 import { ApolloProvider } from 'react-apollo'
 import { App, Layout, NotFound, Login, Register, ApolloClient,
-  Profile, EmailVerification, RecoverPassword, ChangePassword } from './index'
+  Profile, EmailVerification, RecoverPassword, ChangePassword,
+  SocialLogin } from './index'
 import { Router, Route, browserHistory } from 'react-router'
 
 Meteor.startup(() => {
@@ -13,6 +14,7 @@ Meteor.startup(() => {
        <Route component={Layout}>
          <Route path="/" component={App} />
          <Route path="/login" component={Login} />
+         <Route path="/social-login" component={SocialLogin} />
          <Route path="/register" component={Register} />
          <Route path="/profile" component={Profile} />
          <Route path="/change-password" component={ChangePassword} />

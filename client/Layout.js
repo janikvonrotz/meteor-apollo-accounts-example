@@ -27,6 +27,7 @@ class Layout extends React.Component {
           <h1><Link to={'/'}>App</Link></h1>
           <ul className="navigation">
             <li><Link to={`/login`}>Login</Link></li>
+            <li><Link to={`/social-login`}>Social Login</Link></li>
             <li><Link onClick={this.logout.bind(this)}>Logout</Link></li>
             <li><Link to={`/register`}>Register</Link></li>
             <li><Link to={`/email-verification`}>Email Verification</Link></li>

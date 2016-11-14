@@ -26,6 +26,8 @@
     "react": "^15.3.2",
     "react-apollo": "^0.5.12",
     "react-dom": "^15.3.2",
+    "react-facebook-login": "^3.4.0",
+    "react-google-login": "^2.5.8",
     "react-router": "^3.0.0"
   },
   "repository": {

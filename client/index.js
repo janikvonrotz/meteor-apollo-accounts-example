@@ -9,6 +9,7 @@ import Profile from './Profile'
 import EmailVerification from './EmailVerification'
 import Notification from './Notification'
 import ChangePassword from './ChangePassword'
+import SocialLogin from './SocialLogin'
 
 export { App, Layout, Login, RecoverPassword, Register, NotFound, ApolloClient,
-Profile, EmailVerification, Notification, ChangePassword }
+Profile, EmailVerification, Notification, ChangePassword, SocialLogin }
