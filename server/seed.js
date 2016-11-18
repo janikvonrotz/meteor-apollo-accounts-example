@@ -1,33 +1,50 @@
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
+import { Posts } from './index'
 
-if (Meteor.users.find().count() === 0 ) {
+export default () => {
+  if(Posts.find({}).count() === 0){
+    let posts = [
+      { title: 'A hundred reasons why Meteor is great!' },
+      { title: 'Why you should learn GraphQL with Apollo.' },
+      { title: 'React has a promising future.' },
+    ]
 
-  var users = [
-    {
-      email: 'admin@example.com',
-      password: 'password',
-      firstname: 'Admin',
-      lastname: 'McAdmin',
-      roles: ['admin'],
-    },
-  ];
+    console.log(`Add posts to the database.`)
 
-  users.map((user) => {
+    posts.map((post) => {
+      Posts.insert(post)
+    })
+  }
 
-    console.log(`add user ${user.email} to the database.`)
+  if (Meteor.users.find().count() === 0 ) {
 
-    var userId = Accounts.createUser({
-      email: user.email,
-      password: user.password,
-      profile: {
-        firstname: user.firstname,
-        lastname: user.lastname,
-        name: `${user.firstname} ${user.lastname}`
+    let users = [
+      {
+        email: 'admin@example.com',
+        password: 'password',
+        firstname: 'Admin',
+        lastname: 'McAdmin',
+        roles: ['admin'],
       },
-      roles: user.roles,
-    });
+    ];
 
-    Meteor.users.update(userId, {$set: {'emails.0.verified': true}})
-  });
+    users.map((user) => {
+
+      console.log(`Add user ${user.email} to the database.`)
+
+      var userId = Accounts.createUser({
+        email: user.email,
+        password: user.password,
+        profile: {
+          firstname: user.firstname,
+          lastname: user.lastname,
+          name: `${user.firstname} ${user.lastname}`
+        },
+        roles: user.roles,
+      })
+
+      Meteor.users.update(userId, {$set: {'emails.0.verified': true}})
+    })
+  }
 }

@@ -9,7 +9,7 @@ class Profile extends React.Component {
   update(event) {
     event.preventDefault();
 
-    let { client, data, updateProfile } = this.props
+    let { updateProfile } = this.props
     let { firstname, lastname } = this.refs
     firstname = firstname.value
     lastname = lastname.value

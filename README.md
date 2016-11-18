@@ -33,3 +33,5 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 - [x] Social login with Facebook and Google
 - [x] Add email Verification message to App
 - [x] Do a lot of stuff
+- [x] CRUD view for posts
+- [ ] Reactity for posts

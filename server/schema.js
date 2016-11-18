@@ -9,6 +9,12 @@ type Mutation {
     lastname: String
     name: String
   ): SuccessResponse
+  insertPost(
+    title: String
+  ): Post
+  deletePost(
+    _id: ID
+  ): SuccessResponse
 }
 type Post {
   _id: ID
