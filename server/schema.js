@@ -15,6 +15,10 @@ type Mutation {
   deletePost(
     _id: ID
   ): SuccessResponse
+  updatePost(
+    _id: ID
+    title: String
+  ): SuccessResponse
 }
 type Post {
   _id: ID

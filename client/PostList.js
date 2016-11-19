@@ -5,12 +5,17 @@ import { ApolloClient, Notification } from './index'
 
 class PostList extends React.Component {
 
-  async insert(event){
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  async insert(event) {
     event.preventDefault()
 
     let { insertPost, data } = this.props
-    let { title } = this.refs
-    title = title.value
+    let { insertTitle } = this.refs
+    let title = insertTitle.value
 
     try {
       const response = await insertPost({ title })
@@ -21,7 +26,7 @@ class PostList extends React.Component {
     }
   }
 
-  async delete(_id, event){
+  async delete(_id, event) {
     event.preventDefault()
 
     let { deletePost, data } = this.props
@@ -35,8 +40,29 @@ class PostList extends React.Component {
     }
   }
 
+  edit(_id) {
+    this.setState({edit: _id})
+  }
+
+  async update(_id) {
+    let { updatePost, data } = this.props
+
+    let { updateTitle } = this.refs
+    let title = updateTitle.value
+
+    try {
+      const response = await updatePost({ _id, title })
+      Notification.success(response)
+      this.setState({edit: null})
+      data.refetch()
+    } catch (error) {
+      Notification.error(error)
+    }
+  }
+
   render() {
     let { posts, loading } = this.props.data
+    let { edit } = this.state
 
     return loading ? (<p>Loading...</p>) : (
       <div>
@@ -47,7 +73,7 @@ class PostList extends React.Component {
           defaultValue="Untitled"
           type="text"
           required="true"
-          ref="title" />
+          ref="insertTitle" />
           <br />
           <button type="submit">Insert Post</button>
         </form>
@@ -55,7 +81,18 @@ class PostList extends React.Component {
           <ul>
             {posts.map((post) => {
               return (
-                <li key={post._id}>{post.title} <button onClick={this.delete.bind(this, post._id)}>Delete</button></li>
+                edit === post._id ?
+                  <li key={post._id}>
+                    <input
+                    ref="updateTitle"
+                    defaultValue={post.title}
+                    size="50"
+                    type="text" />
+                    <button onClick={this.update.bind(this, post._id)}>Update</button>
+                  </li> : <li key={post._id}>
+                    <span onClick={this.edit.bind(this, post._id)}>{post.title} </span>
+                    <button onClick={this.delete.bind(this, post._id)}>Delete</button>
+                  </li>
               )
             })}
           </ul>
@@ -90,7 +127,23 @@ mutation deletePost($_id: ID) {
 }
 `
 
-PostList = graphql(deletePost, {
+const updatePost = gql`
+mutation updatePost($_id: ID, $title: String) {
+  updatePost(_id: $_id, title: $title){
+    success
+  }
+}
+`
+
+PostList = graphql(updatePost, {
+  props({ mutate }) {
+    return {
+      updatePost({_id, title}) {
+        return mutate({ variables: { _id, title }})
+      }
+    }
+  },
+})(graphql(deletePost, {
   props({ mutate }) {
     return {
       deletePost({_id}) {
@@ -106,6 +159,6 @@ PostList = graphql(deletePost, {
       }
     }
   },
-})(graphql(query)(PostList)))
+})(graphql(query)(PostList))))
 
 export default PostList
