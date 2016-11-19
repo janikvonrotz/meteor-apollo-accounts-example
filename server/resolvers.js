@@ -43,6 +43,16 @@ const resolvers = {
         throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
       }
     },
+    updatePost(root, args, context){
+      let { userId } = context ? context : { userId: null }
+      if(userId) {
+        let _id = args._id
+        delete args._id
+        return { success: Posts.upsert(_id, { $set: args }) }
+      } else {
+        throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
+      }
+    },
   }
 }
 

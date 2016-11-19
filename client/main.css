@@ -16,3 +16,8 @@ h1 a {
   margin-bottom:: 1em;
   padding: 0;
 }
+
+input {
+  font-size: 1em;
+  font-family: Inconsolata;
+}
