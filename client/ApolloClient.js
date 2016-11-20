@@ -1,5 +1,9 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 import { getLoginToken } from 'meteor-apollo-accounts'
+import { Client } from 'subscriptions-transport-ws';
+import { addGraphQLSubscriptions } from './index';
+
+const wsClient = new Client('ws://localhost:8080');
 
 const networkInterface = createNetworkInterface({ uri: '/graphql' })
 networkInterface.use([{
@@ -11,8 +15,14 @@ networkInterface.use([{
     next()
   }
 }]);
-const client = new ApolloClient({
+
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface,
+  wsClient,
+);
+
+const client = new ApolloClient({
+  networkInterface: networkInterfaceWithSubscriptions,
 })
 
 export default client

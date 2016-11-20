@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 import { Resolvers } from 'meteor/nicolaslopezj:apollo-accounts'
 import _ from 'underscore'
-import { Posts } from './index'
+import { Posts, pubsub } from './index'
 
 const resolvers = {
   Query: {
@@ -30,7 +30,10 @@ const resolvers = {
     insertPost(root, args, context){
       let { userId } = context ? context : { userId: null }
       if(userId) {
-        return { _id: Posts.insert(args) }
+        let _id = Posts.insert(args)
+        args._id = _id
+        pubsub.publish('postInserted', args)
+        return { _id: _id }
       } else {
         throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
       }
@@ -53,7 +56,13 @@ const resolvers = {
         throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
       }
     },
-  }
+  },
+  Subscription: {
+    postInserted(post) {
+      // the subscription payload is the post.
+      return post;
+    },
+ },
 }
 
 export default resolvers

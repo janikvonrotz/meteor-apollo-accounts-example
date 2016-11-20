@@ -2,12 +2,41 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { ApolloClient, Notification } from './index'
+import update from 'react-addons-update'
+
+const subscription_query = gql`
+  subscription postInserted {
+    postInserted {
+      _id
+      title
+    }
+  }
+`;
 
 class PostList extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.state = {};
+    super(props)
+    this.state = {}
+    this.subscription = null
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // we don't resubscribe on changed props, because it never happens in our app
+    if (!this.subscription && !nextProps.data.loading) {
+      this.subscription = this.props.data.subscribeToMore({
+        document: subscription_query,
+        updateQuery: (previousResult, { subscriptionData }) => {
+          console.log('updateQuery', subscriptionData)
+          console.log('previousResult', previousResult)
+          return update(previousResult, {
+            posts: {
+              $push: [subscriptionData.data.postInserted],
+            },
+          })
+        },
+      })
+    }
   }
 
   async insert(event) {
@@ -20,7 +49,6 @@ class PostList extends React.Component {
     try {
       const response = await insertPost({ title })
       Notification.success(response)
-      data.refetch()
     } catch (error) {
       Notification.error(error)
     }

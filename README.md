@@ -34,4 +34,17 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 - [x] Add email Verification message to App
 - [x] Do a lot of stuff
 - [x] CRUD view for posts
-- [ ] Reactity for posts
+- [ ] Reactity for posts insert, delete and update
+- [ ] Update pubsup with promise
+
+# Source
+
+[Apollo Example GitHunt server](https://github.com/apollostack/GitHunt-API)
+
+[Apollo Example GitHunt React client](https://github.com/apollostack/GitHunt-React)
+
+[GraphQL Subscriptions in Apollo Client](https://dev-blog.apollodata.com/graphql-subscriptions-in-apollo-client-9a2457f015fb)
+
+[A proposal for GraphQL subscriptions](https://dev-blog.apollodata.com/a-proposal-for-graphql-subscriptions-1d89b1934c18#.)
+
+[GraphQL Subscriptions in Apollo Client](https://dev-blog.apollodata.com/graphql-subscriptions-in-apollo-client-9a2457f015fb)

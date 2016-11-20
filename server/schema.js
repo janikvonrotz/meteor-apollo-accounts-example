@@ -1,6 +1,8 @@
 import { SchemaMutations, SchemaTypes } from 'meteor/nicolaslopezj:apollo-accounts'
+import { resolvers } from './index'
+import { makeExecutableSchema } from 'graphql-tools'
 
-const schema = `
+const rootSchema = [`
 ${SchemaTypes}
 type Mutation {
   ${SchemaMutations}
@@ -38,6 +40,9 @@ type UserProfile {
   lastname: String
   name: String
 }
+type Subscription {
+  postInserted: Post
+}
 type Query {
   me: User
   posts: [Post]
@@ -45,6 +50,20 @@ type Query {
 schema {
   query: Query
   mutation: Mutation
+  subscription: Subscription
 }
-`
-export default [schema];
+`]
+
+const schema = [...rootSchema]
+
+const executableSchema = makeExecutableSchema({
+  typeDefs: schema,
+  resolvers: resolvers,
+  resolverValidationOptions: {
+    requireResolversForNonScalar: false,
+  },
+  allowUndefinedInResolve: true,
+  printErrors: true,
+});
+
+export default executableSchema;

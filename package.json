@@ -24,11 +24,13 @@
     "meteor-node-stubs": "^0.2.3",
     "notie": "^3.9.4",
     "react": "^15.3.2",
-    "react-apollo": "^0.5.12",
+    "react-addons-update": "^15.4.0",
+    "react-apollo": "^0.5.16",
     "react-dom": "^15.3.2",
     "react-facebook-login": "^3.4.0",
     "react-google-login": "^2.5.8",
-    "react-router": "^3.0.0"
+    "react-router": "^3.0.0",
+    "subscriptions-transport-ws": "^0.3.1"
   },
   "repository": {
     "type": "git",

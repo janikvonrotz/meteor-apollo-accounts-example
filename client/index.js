@@ -11,7 +11,8 @@ import Notification from './Notification'
 import ChangePassword from './ChangePassword'
 import SocialLogin from './SocialLogin'
 import PostList from './PostList'
+import addGraphQLSubscriptions from './Subscriptions'
 
 export { App, Layout, Login, RecoverPassword, Register, NotFound, ApolloClient,
 Profile, EmailVerification, Notification, ChangePassword, SocialLogin, PostList,
- }
+addGraphQLSubscriptions }
