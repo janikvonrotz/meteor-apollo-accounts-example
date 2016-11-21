@@ -6,7 +6,7 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 ## Installation
 
 * Git clone this repo
-* Run `npm install` and `npm run`
+* Run `npm install` and `npm start`
 * Go to [http://localhost:3000](http://localhost:3000) to use the app
 * Or open [http://localhost:3000/graphiql](http://localhost:3000/graphiql) and test the API
 
@@ -37,6 +37,7 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 - [x] CRUD view for posts
 - [x] Reactity for posts insert, delete and update
 - [x] Update pubsup with callback
+- [ ] Only send subscriptions if user is logged in
 
 # Source
 
