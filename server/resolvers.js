@@ -30,10 +30,12 @@ const resolvers = {
     insertPost(root, args, context){
       let { userId } = context ? context : { userId: null }
       if(userId) {
-        let _id = Posts.insert(args)
-        args._id = _id
-        pubsub.publish('postInserted', args)
-        return { _id: _id }
+        return Posts.insert(args, (error, response) => {
+          if(response){
+            args._id = response
+            pubsub.publish('postInserted', args)
+          }
+        })
       } else {
         throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
       }
@@ -41,7 +43,11 @@ const resolvers = {
     deletePost(root, args, context){
       let { userId } = context ? context : { userId: null }
       if(userId) {
-        return { success: Posts.remove(args) }
+        return { success: Posts.remove(args, (error, response) => {
+          if(response){
+            pubsub.publish('postDeleted', args._id)
+          }
+        }) }
       } else {
         throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
       }
@@ -51,7 +57,12 @@ const resolvers = {
       if(userId) {
         let _id = args._id
         delete args._id
-        return { success: Posts.upsert(_id, { $set: args }) }
+        return { success: Posts.upsert(_id, { $set: args }, (error, response) => {
+          if(response){
+            args._id = _id
+            pubsub.publish('postUpdated', args)
+          }
+        }) }
       } else {
         throw new Meteor.Error("permission-denied", "Insufficient rights for this action.");
       }
@@ -59,7 +70,12 @@ const resolvers = {
   },
   Subscription: {
     postInserted(post) {
-      // the subscription payload is the post.
+      return post;
+    },
+    postDeleted(_id) {
+      return _id;
+    },
+    postUpdated(post) {
       return post;
     },
  },

@@ -24,7 +24,6 @@
     "meteor-node-stubs": "^0.2.3",
     "notie": "^3.9.4",
     "react": "^15.3.2",
-    "react-addons-update": "^15.4.0",
     "react-apollo": "^0.5.16",
     "react-dom": "^15.3.2",
     "react-facebook-login": "^3.4.0",

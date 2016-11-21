@@ -3,25 +3,8 @@ import { resolvers } from './index'
 import { makeExecutableSchema } from 'graphql-tools'
 
 const rootSchema = [`
+
 ${SchemaTypes}
-type Mutation {
-  ${SchemaMutations}
-  updateProfile(
-    firstname: String
-    lastname: String
-    name: String
-  ): SuccessResponse
-  insertPost(
-    title: String
-  ): Post
-  deletePost(
-    _id: ID
-  ): SuccessResponse
-  updatePost(
-    _id: ID
-    title: String
-  ): SuccessResponse
-}
 type Post {
   _id: ID
   title: String
@@ -40,13 +23,37 @@ type UserProfile {
   lastname: String
   name: String
 }
+
+type Mutation {
+  ${SchemaMutations}
+  updateProfile(
+    firstname: String
+    lastname: String
+    name: String
+  ): SuccessResponse
+  insertPost(
+    title: String
+  ): Post
+  deletePost(
+    _id: ID
+  ): SuccessResponse
+  updatePost(
+    _id: ID
+    title: String
+  ): SuccessResponse
+}
+
 type Subscription {
   postInserted: Post
+  postDeleted: ID
+  postUpdated: Post
 }
+
 type Query {
   me: User
   posts: [Post]
 }
+
 schema {
   query: Query
   mutation: Mutation

@@ -2,11 +2,26 @@ import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { ApolloClient, Notification } from './index'
-import update from 'react-addons-update'
+import _ from 'underscore'
 
-const subscription_query = gql`
+const postInserted = gql`
   subscription postInserted {
     postInserted {
+      _id
+      title
+    }
+  }
+`;
+
+const postDeleted = gql`
+  subscription postDeleted {
+    postDeleted
+  }
+`;
+
+const postUpdated = gql`
+  subscription postUpdated {
+    postUpdated {
       _id
       title
     }
@@ -24,18 +39,43 @@ class PostList extends React.Component {
   componentWillReceiveProps(nextProps) {
     // we don't resubscribe on changed props, because it never happens in our app
     if (!this.subscription && !nextProps.data.loading) {
-      this.subscription = this.props.data.subscribeToMore({
-        document: subscription_query,
-        updateQuery: (previousResult, { subscriptionData }) => {
-          console.log('updateQuery', subscriptionData)
-          console.log('previousResult', previousResult)
-          return update(previousResult, {
-            posts: {
-              $push: [subscriptionData.data.postInserted],
-            },
-          })
-        },
-      })
+      let { subscribeToMore } = this.props.data
+      this.subscription = [subscribeToMore(
+        {
+          document: postInserted,
+          updateQuery: (previousResult, { subscriptionData }) => {
+            previousResult.posts.push(subscriptionData.data.postInserted)
+            return previousResult
+          },
+        }
+      ),
+      subscribeToMore(
+        {
+          document: postDeleted,
+          updateQuery: (previousResult, { subscriptionData }) => {
+            previousResult.posts = _.without(previousResult.posts, _.findWhere(previousResult.posts, {
+              _id: subscriptionData.data.postDeleted
+            }));
+            return previousResult
+          },
+        }
+      ),
+      subscribeToMore(
+        {
+          document: postUpdated,
+          updateQuery: (previousResult, { subscriptionData }) => {
+            console.log(previousResult, subscriptionData)
+            previousResult.posts = previousResult.posts.map((post) => {
+              if(post._id === subscriptionData.data.postUpdated._id) {
+                return subscriptionData.data.postUpdated
+              } else {
+                return post
+              }
+            })
+            return previousResult
+          },
+        }
+      )]
     }
   }
 
@@ -62,7 +102,6 @@ class PostList extends React.Component {
     try {
       const response = await deletePost({ _id })
       Notification.success(response)
-      data.refetch()
     } catch (error) {
       Notification.error(error)
     }
@@ -82,7 +121,6 @@ class PostList extends React.Component {
       const response = await updatePost({ _id, title })
       Notification.success(response)
       this.setState({edit: null})
-      data.refetch()
     } catch (error) {
       Notification.error(error)
     }
