@@ -64,7 +64,6 @@ class PostList extends React.Component {
         {
           document: postUpdated,
           updateQuery: (previousResult, { subscriptionData }) => {
-            console.log(previousResult, subscriptionData)
             previousResult.posts = previousResult.posts.map((post) => {
               if(post._id === subscriptionData.data.postUpdated._id) {
                 return subscriptionData.data.postUpdated
