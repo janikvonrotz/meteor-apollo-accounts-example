@@ -12,17 +12,17 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 
 ## Features
 
+* Real-time subscriptions implementation (not Meteor)
 * Authenticate users with Meteor accounts
 * Social login with Facebook and Google
-* Use existing Apollo schemas
 * Restrict access on the grapqhl API
-* Real-time subscriptions implementation (not Meteor)
-* Redirect user on event
+* Use existing Apollo schema
+* Redirect user on client
+* Update user profile
 * Register new users
 * Email verification
 * Password change
 * Password reset
-* Update user profile
 
 ## Screenshot
 
@@ -37,6 +37,8 @@ Blog post: [Authenticate Meteor accounts with the Apollo GraphQL API](https://ja
 - [x] CRUD view for posts
 - [x] Reactity for posts insert, delete and update
 - [x] Update pubsup with callback
+- [ ] Create user with profile directly
+- [x] Redirect on route when user not logged in
 - [ ] Only send subscriptions if user is logged in
 
 # Source
