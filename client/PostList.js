@@ -168,7 +168,7 @@ class PostList extends React.Component {
 }
 
 const query = gql`
-query getCurrentUser {
+query getData {
   posts {
     _id
     title
