@@ -23,6 +23,16 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
 
 const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubscriptions,
+  // Default to using Mongo _id, must use _id for queries.
+  // @see https://github.com/apollostack/meteor-integration/blob/fdf414c322337a62e5a68e9c4299a631e5832649/main-client.js#L55
+  dataIdFromObject(result) {
+    if (result._id && result.__typename) {
+      const dataId = result.__typename + result._id;
+      return dataId;
+    }
+
+    return null;
+  },
 })
 
 export default client
