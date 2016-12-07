@@ -12,23 +12,21 @@ class Register extends React.Component {
 
     let { client, data, updateProfile } = this.props
     let { firstname, lastname, email, password } = this.refs
-    firstname = firstname.value
-    lastname = lastname.value
+    let profile = {
+      firstname: firstname.value,
+      lastname: lastname.value,
+      name: `${firstname.value} ${lastname.value}`
+    }
     email = email.value
     password = password.value
 
     try {
-      const response = await createUser({email, password}, ApolloClient)
+      const response = await createUser({email, password, profile}, ApolloClient)
       Notification.success(response)
+      browserHistory.push('/email-verification')
       ApolloClient.resetStore()
-      updateProfile({firstname: firstname, lastname: lastname})
-      .then((response) => {
-        Notification.success(response)
-        browserHistory.push('/email-verification')
-      }).catch((error) => {
-        Notification.error(error)
-      });
     } catch (error) {
+      console.log(error)
       Notification.error(error)
     }
   }
@@ -75,25 +73,5 @@ class Register extends React.Component {
     );
   }
 }
-
-
-const updateProfile = gql`
-mutation updateProfile($firstname: String, $lastname: String, $name: String) {
-  updateProfile(firstname: $firstname, lastname: $lastname, name: $name){
-    success
-  }
-}
-`
-
-Register = graphql(updateProfile, {
-  props({ mutate }) {
-    return {
-      updateProfile({firstname, lastname}) {
-        let name = `${firstname} ${lastname}`
-        return mutate({ variables: { firstname, lastname, name }})
-      }
-    }
-  },
-})(Register)
 
 export default Register

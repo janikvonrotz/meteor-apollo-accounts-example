@@ -19,6 +19,7 @@ class Login extends React.Component {
       ApolloClient.resetStore()
       browserHistory.push('/')
     } catch (error) {
+      console.log(error)
       Notification.error(error)
     }
   }

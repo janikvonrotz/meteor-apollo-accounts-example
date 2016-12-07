@@ -4,7 +4,13 @@ import { makeExecutableSchema } from 'graphql-tools'
 
 const rootSchema = [`
 
-${SchemaTypes}
+${SchemaTypes({
+  CreateUserProfileInput: `
+    firstname: String!
+    lastname: String!
+    name: String!
+  `
+})}
 type Post {
   _id: ID
   title: String
@@ -25,7 +31,7 @@ type UserProfile {
 }
 
 type Mutation {
-  ${SchemaMutations}
+  ${SchemaMutations()}
   updateProfile(
     firstname: String
     lastname: String
