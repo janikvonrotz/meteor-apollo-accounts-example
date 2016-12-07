@@ -19,7 +19,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    ...Resolvers,
+    ...Resolvers(),
     updateProfile(root, args, context){
       let { userId } = context ? context : { userId: null }
       let user = Meteor.users.findOne(userId)

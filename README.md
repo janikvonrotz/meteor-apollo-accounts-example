@@ -37,9 +37,10 @@ Blog posts: [Authenticate Meteor accounts with the Apollo GraphQL API](https://j
 - [x] CRUD view for posts
 - [x] Reactity for posts insert, delete and update
 - [x] Update pubsup with callback
-- [ ] Create user with profile directly
 - [x] Redirect on route when user not logged in
+- [x] Create user with profile directly
 - [ ] Only send subscriptions if user is logged in
+- [ ] Run Websocket server on the same port
 
 # Source
 

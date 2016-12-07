@@ -26,7 +26,6 @@ class Register extends React.Component {
       browserHistory.push('/email-verification')
       ApolloClient.resetStore()
     } catch (error) {
-      console.log(error)
       Notification.error(error)
     }
   }
